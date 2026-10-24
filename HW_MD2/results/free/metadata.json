@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "boundary": "free",
+  "config": {
+    "n": 10,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "mass": 1.0,
+    "dt": 0.002,
+    "nsteps": 10000,
+    "output_every": 10,
+    "rcut_sigma": 2.5,
+    "spacing_sigma": 1.122462048309373,
+    "kick_velocity": 0.2
+  },
+  "rcut": 2.5,
+  "spacing": 1.122462048309373,
+  "box_length": 11.22462048309373,
+  "dimensions": 1,
+  "integrator": "velocity_verlet",
+  "potential": "lennard_jones_shifted_force",
+  "ensemble": "NVE",
+  "initialization": {
+    "positions": "x[i] = i * spacing",
+    "velocities": "single_particle_kick; all other velocities zero",
+    "kick_particle_index_zero_based": 5,
+    "random_seed": null,
+    "center_of_mass_velocity_removed": false
+  },
+  "units": {
+    "system": "Lennard-Jones reduced units",
+    "length": "sigma",
+    "energy": "epsilon",
+    "mass": "m",
+    "time": "sigma * sqrt(m / epsilon)",
+    "velocity": "sqrt(epsilon / m)",
+    "force": "epsilon / sigma",
+    "temperature": "epsilon / k_B",
+    "k_B": 1.0
+  },
+  "array_axes": [
+    "sample",
+    "particle"
+  ],
+  "particle_order": "fixed; column i is particle i (zero based)",
+  "positions_convention": "unbounded",
+  "positions_unwrapped_convention": "continuous laboratory coordinates",
+  "thermal_columns": [
+    "step",
+    "time",
+    "potential_energy",
+    "kinetic_energy",
+    "total_energy",
+    "temperature_reduced"
+  ],
+  "kinetic_energy_convention": "includes center-of-mass translation",
+  "temperature_convention": "COM removed; N-1 degrees of freedom; k_B=1",
+  "sampling": {
+    "initial_state": true,
+    "final_state": true,
+    "regular_interval": 0.02
+  },
+  "software": {
+    "python": "3.12.14",
+    "numpy": "2.5.4"
+  }
+}

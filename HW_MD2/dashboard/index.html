@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>一维 LJ 链 · 扰动传播</title>
+  <style>__DASHBOARD_STYLE__</style>
+  <script>__PLOTLY_BUNDLE__</script>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">MOLECULAR DYNAMICS / 1D LENNARD-JONES</p>
+    <h1>一维粒子链中的扰动传播</h1>
+    <p class="intro">对照自由与周期边界。拖动时间、点击热图或选中粒子，查看同一时刻的运动与能量。</p>
+  </header>
+  <section class="controls" aria-label="联动控制">
+    <div class="toolbar">
+      <button id="play" type="button" disabled>播放</button>
+      <button id="reset" type="button" disabled>回到起点</button>
+      <label>观察区间 <select id="window" disabled><option value="early">早期 0–2</option><option value="full">全程</option><option value="custom" disabled>自定义缩放</option></select></label>
+      <label>播放速度 <select id="speed"><option value="0.25">0.25×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+      <span id="time-label" class="time-label">加载轨迹…</span>
+    </div>
+    <label class="slider-label" for="frame">时间（约化单位）</label>
+    <input id="frame" type="range" min="0" max="1" step="1" value="0" disabled>
+    <div class="toolbar secondary">
+      <label>热图 / 颜色 <select id="metric" disabled><option value="displacement">去质心位移 u</option><option value="velocity" selected>去质心速度 v′</option><option value="kinetic">单粒子内部动能 K′</option></select></label>
+      <label>粒子 <select id="particle" disabled></select></label>
+      <label>粒子视图 <select id="coordinates" disabled><option value="com10">去质心位移 ×10</option><option value="com">去质心位移 ×1</option><option value="lab">实验室坐标（连续）</option><option value="wrapped">盒内坐标（折回）</option></select></label>
+    </div>
+    <p class="hint">颜色范围在所有边界、所有帧间固定。热图点击选取时间和粒子；缩放任意时间图会同步其他时间图。速度箭头仅按固定比例显示。</p>
+  </section>
+  <p id="status" role="status" aria-live="polite">正在准备图表…</p>
+  <div id="cases" class="cases"></div>
+  <footer>
+    所有数值使用轨迹文件中的 LJ 约化单位。u 以初态为参考并扣除质心平移；v′ = v − v_COM；K′ = m(v′)²/2，仅为内部动能，不是局部总能量或热流。<br>
+    自由边缘的初态松弛也包含在信号中。位移 ×10 只改变粒子图的显示位置，不改变热图、读数或计算数据。不同采样网格按最近保存帧对齐，各面板标出实际采样时间。
+  </footer>
+</main>
+<script id="trajectory-data" type="application/json">__TRAJECTORY_DATA__</script>
+<script>__DASHBOARD_SCRIPT__</script>
+</body>
+</html>

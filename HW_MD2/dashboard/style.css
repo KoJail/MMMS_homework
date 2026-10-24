@@ -1,0 +1,37 @@
+:root { color-scheme: light; font-family: Inter, "Noto Sans CJK SC", "Microsoft YaHei", system-ui, sans-serif; color: #202c3d; background: #f4f6f9; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 1520px; margin: auto; padding: 32px 28px; }
+header { margin-bottom: 25px; }
+.eyebrow { font-size: 12px; letter-spacing: .13em; color: #526780; }
+h1 { font-size: 30px; font-weight: 600; margin: 10px 0; }
+.intro { color: #5a687b; line-height: 1.7; }
+.controls { padding: 20px; border: 1px solid #dce2ea; border-radius: 12px; background: white; }
+.toolbar { display: flex; gap: 12px 18px; flex-wrap: wrap; align-items: center; }
+label { font-size: 13px; display: inline-flex; align-items: center; gap: 8px; color: #405169; }
+button, select { font: inherit; font-size: 13px; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; color: #273d59; min-height: 38px; }
+button { cursor: pointer; }
+button#play { color: white; background: #294e78; border-color: #294e78; min-width: 76px; }
+button:disabled, select:disabled { opacity: .55; cursor: wait; }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid #7fa9d8; outline-offset: 2px; }
+.time-label { margin-left: auto; font-size: 15px; font-variant-numeric: tabular-nums; }
+.slider-label { display: block; margin: 18px 0 4px; font-size: 12px; }
+input[type=range] { width: 100%; accent-color: #294e78; margin: 6px 0 20px; }
+.hint, footer { font-size: 12px; color: #63738a; line-height: 1.8; }
+.hint { margin: 14px 0 0; }
+#status { font-size: 13px; min-height: 20px; color: #526780; }
+.cases { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 22px; align-items: start; }
+.case { min-width: 0; background: white; border: 1px solid #dce2ea; border-radius: 12px; overflow: hidden; }
+.case-header { padding: 20px 22px 0; }
+h2 { font-size: 21px; font-weight: 600; margin: 0 0 8px; }
+.case-meta, .sample-label { font-size: 12px; color: #63738a; line-height: 1.7; }
+.readings { font-size: 12px; padding: 10px 22px; background: #f7f9fc; line-height: 1.9; font-variant-numeric: tabular-nums; }
+.chart-title { font-size: 13px; font-weight: 500; margin: 18px 22px 0; }
+.chart { width: 100%; min-width: 0; }
+.chain { height: 185px; }
+.heatmap { height: 300px; }
+.history, .thermo { height: 245px; }
+.plot-note { font-size: 11px; color: #63738a; margin: 0 22px 12px; }
+footer { margin-top: 25px; }
+@media (max-width: 600px) { main { padding: 20px 10px; } h1 { font-size: 24px; } .controls { padding: 14px; } .toolbar { gap: 10px; } .time-label { margin-left: 0; width: 100%; } .secondary label { width: 100%; justify-content: space-between; } .case-header { padding: 16px 14px 0; } .readings { padding: 10px 14px; } }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
