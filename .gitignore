@@ -1,1 +1,25 @@
 /.venv/
+
+# Python environments and caches
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.uv-cache/
+
+# Local credentials and agent configuration
+/.aws/
+/.codex/
+/.agents/
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

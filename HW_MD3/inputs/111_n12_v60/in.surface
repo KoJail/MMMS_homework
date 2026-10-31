@@ -1,0 +1,37 @@
+# Generated from teacher geometry; same a=3.615 A and EAM file.
+units metal
+atom_style atomic
+boundary p p p
+lattice fcc 3.615 orient x 1 1 1 orient y 1 -1 0 orient z 1 1 -2
+region box block 0 12 0 6 0 6
+create_box 1 box
+create_atoms 1 box
+pair_style eam/alloy
+pair_coeff * * CuYM.eam.alloy Cu
+neighbor 0.3 bin
+neigh_modify every 1 delay 0 check yes
+compute pea all pe/atom
+thermo 20
+thermo_style custom step atoms pe lx ly lz press fmax fnorm
+thermo_modify format float %.16g
+
+min_style cg
+min_modify dmax 0.1
+minimize 0.0 1e-8 10000 100000
+variable EB equal $(pe:%.16g)
+print "RESULT bulk N=$(count(all):%.0f) E=$(pe:%.16g) Lx=$(lx:%.16g) Ly=$(ly:%.16g) Lz=$(lz:%.16g) Fmax=$(fmax:%.16g) Pressure=$(press:%.16g)"
+dump final all custom 1 bulk.dump id type x y z c_pea
+dump_modify final sort id format float %.16g
+run 0
+undump final
+write_data bulk.data
+change_box all x delta -60 0 units box
+run 0
+print "RESULT unrelaxed N=$(count(all):%.0f) E=$(pe:%.16g) Lx=$(lx:%.16g) Ly=$(ly:%.16g) Lz=$(lz:%.16g) Fmax=$(fmax:%.16g)"
+minimize 0.0 1e-8 10000 100000
+print "RESULT slab N=$(count(all):%.0f) E=$(pe:%.16g) Lx=$(lx:%.16g) Ly=$(ly:%.16g) Lz=$(lz:%.16g) Fmax=$(fmax:%.16g)"
+dump final all custom 1 slab.dump id type x y z c_pea
+dump_modify final sort id format float %.16g
+run 0
+undump final
+write_data slab.data

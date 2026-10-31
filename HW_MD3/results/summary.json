@@ -1,0 +1,129 @@
+{
+  "baseline": {
+    "100": {
+      "name": "100_n12_v40",
+      "hkl": "100",
+      "nx": 12,
+      "vacuum": 40,
+      "ftol": "1e-8",
+      "kind": "production",
+      "N": 1728,
+      "thickness_box_A": 43.38,
+      "Ly_A": 21.69,
+      "Lz_A": 21.69,
+      "area_A2": 470.45610000000005,
+      "E_bulk_eV": -6117.49724052338,
+      "E_unrelaxed_eV": -6038.180828720067,
+      "E_slab_eV": -6038.490150078763,
+      "e_bulk_eV": -3.540218310488067,
+      "bulk_pressure_bar": -86.0257605499325,
+      "gamma_J_m2": 1.3453254642748893,
+      "gamma_unrelaxed_J_m2": 1.3505925599008022,
+      "fmax_eV_A": 4.418981504501762e-10,
+      "stopping": "force tolerance",
+      "dump_energy_error_eV": 4.621142579708248e-09,
+      "max_inplane_energy_spread_eV": 1.8074430840897548e-13,
+      "geometric_gap_A": 41.89084943673037
+    },
+    "110": {
+      "name": "110_n12_v40",
+      "hkl": "110",
+      "nx": 12,
+      "vacuum": 40,
+      "ftol": "1e-8",
+      "kind": "production",
+      "N": 3456,
+      "thickness_box_A": 61.34858433574486,
+      "Ly_A": 30.67429216787243,
+      "Lz_A": 21.69,
+      "area_A2": 665.3253971211531,
+      "E_bulk_eV": -12234.99448102885,
+      "E_unrelaxed_eV": -12111.1884854513,
+      "E_slab_eV": -12112.45290552156,
+      "e_bulk_eV": -3.540218310482885,
+      "bulk_pressure_bar": -86.02576054963936,
+      "gamma_J_m2": 1.4754678674589599,
+      "gamma_unrelaxed_J_m2": 1.49069217950912,
+      "fmax_eV_A": 4.065027867268534e-10,
+      "stopping": "force tolerance",
+      "dump_energy_error_eV": 5.120455170981586e-09,
+      "max_inplane_energy_spread_eV": 1.0325962307433656e-11,
+      "geometric_gap_A": 41.41806805933203
+    },
+    "111": {
+      "name": "111_n12_v40",
+      "hkl": "111",
+      "nx": 12,
+      "vacuum": 40,
+      "ftol": "1e-8",
+      "kind": "production",
+      "N": 6912,
+      "thickness_box_A": 75.13636403233791,
+      "Ly_A": 30.67429216787243,
+      "Lz_A": 35.41962168064477,
+      "area_A2": 1086.4718239076062,
+      "E_bulk_eV": -24469.98896223338,
+      "E_unrelaxed_eV": -24300.90486137695,
+      "E_slab_eV": -24301.87959850127,
+      "e_bulk_eV": -3.5402183105083016,
+      "bulk_pressure_bar": -86.02576055020053,
+      "gamma_J_m2": 1.2395208444498906,
+      "gamma_unrelaxed_J_m2": 1.2467078741110134,
+      "fmax_eV_A": 6.374153775218216e-07,
+      "stopping": "linesearch alpha is zero",
+      "dump_energy_error_eV": 6.255140760913491e-08,
+      "max_inplane_energy_spread_eV": 7.993605777301127e-15,
+      "geometric_gap_A": 42.16247080957605
+    }
+  },
+  "validation": {
+    "100": {
+      "thickness_relative_change": 1.756355352267036e-07,
+      "vacuum_relative_change": 1.3811174426336947e-13,
+      "tolerance_relative_change": 3.383249236321717e-11,
+      "NIST_J_m2": 1.34525,
+      "NIST_relative_difference": 5.609684065355225e-05
+    },
+    "110": {
+      "thickness_relative_change": 1.7268489116428754e-07,
+      "vacuum_relative_change": 8.903988657493755e-14,
+      "tolerance_relative_change": 1.8109513888475703e-11,
+      "NIST_J_m2": 1.47539,
+      "NIST_relative_difference": 5.2777542859816506e-05
+    },
+    "111": {
+      "thickness_relative_change": 2.337636697546941e-07,
+      "vacuum_relative_change": 1.2989609388114332e-13,
+      "tolerance_relative_change": 0.0,
+      "NIST_J_m2": 1.23946,
+      "NIST_relative_difference": 4.9089482428321674e-05
+    }
+  },
+  "teacher_reproduction": {
+    "100": {
+      "E_bulk_eV": -6117.49724052338,
+      "E_slab_eV": -6038.49015006839,
+      "gamma_J_m2": 1.3453254644515162
+    },
+    "111": {
+      "E_bulk_eV": -24469.9889622334,
+      "E_slab_eV": -24301.8795984205,
+      "gamma_J_m2": 1.239520845045596
+    }
+  },
+  "area_fractions": {
+    "100": 0.29320581694098796,
+    "110": 0.04753685417910412,
+    "111": 0.659257328879908
+  },
+  "face_counts": {
+    "100": 6,
+    "110": 12,
+    "111": 8
+  },
+  "h_ratio_to_111": {
+    "100": 1.0853592904861198,
+    "110": 1.1903534128252473,
+    "111": 1.0
+  }
+}

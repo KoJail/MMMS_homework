@@ -1,0 +1,132 @@
+[
+  {
+    "name": "100_n6_v40",
+    "hkl": "100",
+    "nx": 6,
+    "vacuum": 40,
+    "ftol": "1e-8",
+    "kind": "production"
+  },
+  {
+    "name": "100_n12_v40",
+    "hkl": "100",
+    "nx": 12,
+    "vacuum": 40,
+    "ftol": "1e-8",
+    "kind": "production"
+  },
+  {
+    "name": "100_n18_v40",
+    "hkl": "100",
+    "nx": 18,
+    "vacuum": 40,
+    "ftol": "1e-8",
+    "kind": "production"
+  },
+  {
+    "name": "100_n12_v60",
+    "hkl": "100",
+    "nx": 12,
+    "vacuum": 60,
+    "ftol": "1e-8",
+    "kind": "production"
+  },
+  {
+    "name": "100_tight",
+    "hkl": "100",
+    "nx": 12,
+    "vacuum": 40,
+    "ftol": "1e-10",
+    "kind": "production"
+  },
+  {
+    "name": "110_n6_v40",
+    "hkl": "110",
+    "nx": 6,
+    "vacuum": 40,
+    "ftol": "1e-8",
+    "kind": "production"
+  },
+  {
+    "name": "110_n12_v40",
+    "hkl": "110",
+    "nx": 12,
+    "vacuum": 40,
+    "ftol": "1e-8",
+    "kind": "production"
+  },
+  {
+    "name": "110_n18_v40",
+    "hkl": "110",
+    "nx": 18,
+    "vacuum": 40,
+    "ftol": "1e-8",
+    "kind": "production"
+  },
+  {
+    "name": "110_n12_v60",
+    "hkl": "110",
+    "nx": 12,
+    "vacuum": 60,
+    "ftol": "1e-8",
+    "kind": "production"
+  },
+  {
+    "name": "110_tight",
+    "hkl": "110",
+    "nx": 12,
+    "vacuum": 40,
+    "ftol": "1e-10",
+    "kind": "production"
+  },
+  {
+    "name": "111_n6_v40",
+    "hkl": "111",
+    "nx": 6,
+    "vacuum": 40,
+    "ftol": "1e-8",
+    "kind": "production"
+  },
+  {
+    "name": "111_n12_v40",
+    "hkl": "111",
+    "nx": 12,
+    "vacuum": 40,
+    "ftol": "1e-8",
+    "kind": "production"
+  },
+  {
+    "name": "111_n18_v40",
+    "hkl": "111",
+    "nx": 18,
+    "vacuum": 40,
+    "ftol": "1e-8",
+    "kind": "production"
+  },
+  {
+    "name": "111_n12_v60",
+    "hkl": "111",
+    "nx": 12,
+    "vacuum": 60,
+    "ftol": "1e-8",
+    "kind": "production"
+  },
+  {
+    "name": "111_tight",
+    "hkl": "111",
+    "nx": 12,
+    "vacuum": 40,
+    "ftol": "1e-10",
+    "kind": "production"
+  },
+  {
+    "name": "teacher_100",
+    "hkl": "100",
+    "kind": "teacher"
+  },
+  {
+    "name": "teacher_111",
+    "hkl": "111",
+    "kind": "teacher"
+  }
+]

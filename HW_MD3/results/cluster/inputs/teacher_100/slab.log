@@ -1,0 +1,114 @@
+LAMMPS (29 Aug 2024 - Update 1)
+  using 1 OpenMP thread(s) per MPI task
+# 3d Cu minimization MS at T = 0K
+
+units		metal
+boundary	p p p
+
+atom_style	atomic
+
+read_data	data.p100
+Reading data file ...
+  orthogonal box = (-40 0 0) to (43.38 21.69 21.69)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  1728 atoms
+  reading velocities ...
+  1728 velocities
+  read_data CPU = 0.007 seconds
+
+pair_style	eam/alloy
+pair_coeff	* * CuYM.eam.alloy Cu
+Reading eam/alloy potential file CuYM.eam.alloy with DATE: 2007-10-12
+
+neighbor	0.3 bin
+neigh_modify	delay 5
+
+thermo		10
+timestep	0.001
+
+variable	pe equal pe
+compute		pea all pe/atom
+
+dump		2 all custom 1000 s3r*.xyz id type x y z c_pea
+dump_modify	2 sort id
+
+min_style	cg
+#min_style	sd
+minimize	1.0e-12 1.0e-12 5000 5000
+
+CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE
+
+Your simulation uses code contributions which should be cited:
+
+- Type Label Framework: https://doi.org/10.1021/acs.jpcb.3c08419
+
+@Article{Gissinger24,
+ author = {Jacob R. Gissinger, Ilia Nikiforov, Yaser Afshar, Brendon Waters, Moon-ki Choi, Daniel S. Karls, Alexander Stukowski, Wonpil Im, Hendrik Heinz, Axel Kohlmeyer, and Ellad B. Tadmor},
+ title = {Type Label Framework for Bonded Force Fields in LAMMPS},
+ journal = {J. Phys. Chem. B},
+ year =    2024,
+ volume =  128,
+ number =  13,
+ pages =   {3282–-3297}
+}
+
+CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE
+
+Switching to 'neigh_modify every 1 delay 0 check yes' setting during minimization
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 5.80679
+  ghost atom cutoff = 5.80679
+  binsize = 2.903395, bins = 29 8 8
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/bin/atomonly/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 4.743 | 4.743 | 4.743 Mbytes
+   Step          Temp          E_pair         E_mol          TotEng         Press     
+         0   0             -6038.1808      0             -6038.1808     -3862.8223    
+        10   0             -6038.4885      0             -6038.4885     -2645.3751    
+        20   0             -6038.4901      0             -6038.4901     -2435.9449    
+        30   0             -6038.4901      0             -6038.4901     -2414.6005    
+        40   0             -6038.4901      0             -6038.4901     -2410.9916    
+        45   0             -6038.4902      0             -6038.4902     -2409.8376    
+Loop time of 0.143477 on 1 procs for 45 steps with 1728 atoms
+
+99.1% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+Minimization stats:
+  Stopping criterion = energy tolerance
+  Energy initial, next-to-last, final = 
+     -6038.18082872007  -6038.49015006692  -6038.49015006839
+  Force two-norm initial, final = 1.9105294 0.00012994415
+  Force max component initial, final = 0.12679875 5.576611e-06
+  Final line search alpha, max atom move = 1 5.576611e-06
+  Iterations, force evaluations = 45 88
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.1376     | 0.1376     | 0.1376     |   0.0 | 95.90
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.00086635 | 0.00086635 | 0.00086635 |   0.0 |  0.60
+Output  | 0.000106   | 0.000106   | 0.000106   |   0.0 |  0.07
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.004904   |            |       |  3.42
+
+Nlocal:           1728 ave        1728 max        1728 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           3145 ave        3145 max        3145 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:          64080 ave       64080 max       64080 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 64080
+Ave neighs/atom = 37.083333
+Neighbor list builds = 0
+Dangerous builds = 0
+undump		2
+Total wall time: 0:00:00

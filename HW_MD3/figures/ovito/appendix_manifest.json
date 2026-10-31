@@ -1,0 +1,79 @@
+{
+  "ovito_version": "3.17.1",
+  "renderer": "TachyonRenderer",
+  "size": [
+    1600,
+    1000
+  ],
+  "input_format": "lammps/dump",
+  "energy_range_eV": [
+    -3.55,
+    -2.8
+  ],
+  "images": [
+    {
+      "name": "Cu110_slab_cna",
+      "source": "results/cluster/inputs/110_n12_v40/slab.dump",
+      "atoms": 3456,
+      "CNA_counts": {
+        "CommonNeighborAnalysis.counts.OTHER": 288,
+        "CommonNeighborAnalysis.counts.FCC": 3168,
+        "CommonNeighborAnalysis.counts.HCP": 0,
+        "CommonNeighborAnalysis.counts.BCC": 0,
+        "CommonNeighborAnalysis.counts.ICO": 0
+      },
+      "energy_min_eV": -3.542883432068118,
+      "energy_max_eV": -2.871759636949541,
+      "image": "figures/ovito/Cu110_slab_cna.png",
+      "state": "ovito/states/Cu110_slab_cna.ovito"
+    },
+    {
+      "name": "Cu110_slab_energy",
+      "source": "results/cluster/inputs/110_n12_v40/slab.dump",
+      "atoms": 3456,
+      "CNA_counts": {
+        "CommonNeighborAnalysis.counts.OTHER": 288,
+        "CommonNeighborAnalysis.counts.FCC": 3168,
+        "CommonNeighborAnalysis.counts.HCP": 0,
+        "CommonNeighborAnalysis.counts.BCC": 0,
+        "CommonNeighborAnalysis.counts.ICO": 0
+      },
+      "energy_min_eV": -3.542883432068118,
+      "energy_max_eV": -2.871759636949541,
+      "image": "figures/ovito/Cu110_slab_energy.png",
+      "state": "ovito/states/Cu110_slab_energy.ovito"
+    },
+    {
+      "name": "Cu111_slab_cna",
+      "source": "results/cluster/inputs/111_n12_v40/slab.dump",
+      "atoms": 6912,
+      "CNA_counts": {
+        "CommonNeighborAnalysis.counts.OTHER": 384,
+        "CommonNeighborAnalysis.counts.FCC": 6528,
+        "CommonNeighborAnalysis.counts.HCP": 0,
+        "CommonNeighborAnalysis.counts.BCC": 0,
+        "CommonNeighborAnalysis.counts.ICO": 0
+      },
+      "energy_min_eV": -3.541217350413168,
+      "energy_max_eV": -3.113418681450695,
+      "image": "figures/ovito/Cu111_slab_cna.png",
+      "state": "ovito/states/Cu111_slab_cna.ovito"
+    },
+    {
+      "name": "Cu111_slab_energy",
+      "source": "results/cluster/inputs/111_n12_v40/slab.dump",
+      "atoms": 6912,
+      "CNA_counts": {
+        "CommonNeighborAnalysis.counts.OTHER": 384,
+        "CommonNeighborAnalysis.counts.FCC": 6528,
+        "CommonNeighborAnalysis.counts.HCP": 0,
+        "CommonNeighborAnalysis.counts.BCC": 0,
+        "CommonNeighborAnalysis.counts.ICO": 0
+      },
+      "energy_min_eV": -3.541217350413168,
+      "energy_max_eV": -3.113418681450695,
+      "image": "figures/ovito/Cu111_slab_energy.png",
+      "state": "ovito/states/Cu111_slab_energy.ovito"
+    }
+  ]
+}

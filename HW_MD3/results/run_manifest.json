@@ -1,0 +1,56 @@
+{
+  "date_local": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "source_repository": "https://gitee.com/sjtu-liugs/mmmsfall.git",
+  "source_commit": "544b5c5a86f9119b3bc77dfd3f06c065c3168743",
+  "potential": "reference/mmmsfall/0Surface/CuYM.eam.alloy",
+  "potential_sha256": "c0ae005c4680dc6110f6b3ec135f27ab8a2031efacb4a4b52c83e4ec9b54fb24",
+  "LAMMPS": "29 Aug 2024 - Update 1",
+  "module": "lammps/20240829.1-intel-2021.4.0",
+  "partition": "64c512g",
+  "cpus": 1,
+  "requested_walltime": "00:10:00",
+  "jobs": [
+    {
+      "id": 64248955,
+      "state": "COMPLETED",
+      "elapsed": "00:00:27",
+      "exit_code": "0:0",
+      "remote_directory": "~/HW_MD3_20261029_v1",
+      "purpose": "First pass: total energies verified; final per-atom energy mapping unsuitable for visualization"
+    },
+    {
+      "id": 64249217,
+      "state": "FAILED",
+      "elapsed": "00:00:00",
+      "exit_code": "127:0",
+      "reason": "Noninteractive environment did not define module; no simulation executed"
+    },
+    {
+      "id": 64249361,
+      "state": "FAILED",
+      "elapsed": "00:00:00",
+      "exit_code": "1:0",
+      "reason": "Module search path missing; no simulation executed"
+    },
+    {
+      "id": 64249389,
+      "state": "COMPLETED",
+      "elapsed": "00:00:32",
+      "exit_code": "0:0",
+      "remote_directory": "~/HW_MD3_20261029_v2",
+      "purpose": "Authoritative outputs; active dump plus run 0 refreshes per-atom energies"
+    }
+  ],
+  "authoritative_raw_directory": "results/cluster",
+  "diagnostic_directory": "results/first_pass",
+  "num_production_cases": 15,
+  "num_teacher_reproduction_cases": 2,
+  "known_limitations": [
+    "111 CG stops with linesearch alpha is zero; force norm ~2.03e-5 eV/A, max component ~6.37e-7 eV/A; requested force norm tolerance is not attained.",
+    "Fixed a=3.615 A retains bulk pressure about -86.03 bar.",
+    "Wulff shape includes only 100, 110, 111 families; excludes other orientations and edge/vertex/interface energies.",
+    "Statistical plots use Matplotlib; atomic structure images use OVITO 3.17.1 Python/Tachyon rendering. No GUI screenshots or nanoparticle MD trajectories are claimed."
+  ],
+  "runner_note": "The final local runner additionally initializes module search paths explicitly; noninteractive module loading was verified without running simulations on the login node."
+}

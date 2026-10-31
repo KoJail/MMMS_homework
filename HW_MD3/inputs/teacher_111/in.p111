@@ -1,0 +1,33 @@
+# 3d Cu minimization MS at T = 0K
+
+units		metal
+boundary	p p p
+
+atom_style	atomic
+
+lattice		fcc 3.615 orient x 1 1 1 orient y 1 -1 0 orient z 1 1 -2
+#lattice		fcc 3.615 orient x 1 0 0 orient y 0 1 0 orient z 0 0 1 
+region		box block 0 12.0 0 6.0 0 6
+create_box	1 box
+create_atoms	1 box
+
+
+pair_style	eam/alloy
+pair_coeff	* * CuYM.eam.alloy Cu
+
+neighbor	0.3 bin
+neigh_modify	delay 5
+
+thermo		10
+timestep	0.001
+
+variable	pe equal pe
+compute		pea all pe/atom
+
+dump		2 all custom 10 p3r*.xyz id type x y z c_pea
+dump_modify	2 sort id
+min_style 	sd
+minimize	1.0e-12 1.0e-12 1000 10000
+undump		2
+
+write_data      data.p111

@@ -1,0 +1,7 @@
+Lmod has detected the following error: These module(s) or extension(s) exist
+but cannot be loaded as requested: "lammps/20240829.1-intel-2021.4.0"
+   Try: "module spider lammps/20240829.1-intel-2021.4.0" to see how to load the
+module(s).
+
+
+

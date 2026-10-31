@@ -1,0 +1,232 @@
+LAMMPS (29 Aug 2024 - Update 1)
+  using 1 OpenMP thread(s) per MPI task
+# Generated from teacher geometry; same a=3.615 A and EAM file.
+units metal
+atom_style atomic
+boundary p p p
+lattice fcc 3.615 orient x 1 1 0 orient y -1 1 0 orient z 0 0 1
+Lattice spacing in x,y,z = 5.112382 5.112382 3.615
+region box block 0 6 0 6 0 6
+create_box 1 box
+Created orthogonal box = (0 0 0) to (30.674292 30.674292 21.69)
+  1 by 1 by 1 MPI processor grid
+create_atoms 1 box
+Created 1728 atoms
+  using lattice units in orthogonal box = (0 0 0) to (30.674292 30.674292 21.69)
+  create_atoms CPU = 0.000 seconds
+pair_style eam/alloy
+pair_coeff * * CuYM.eam.alloy Cu
+Reading eam/alloy potential file CuYM.eam.alloy with DATE: 2007-10-12
+neighbor 0.3 bin
+neigh_modify every 1 delay 0 check yes
+compute pea all pe/atom
+thermo 20
+thermo_style custom step atoms pe lx ly lz press fmax fnorm
+thermo_modify format float %.16g
+
+min_style cg
+min_modify dmax 0.1
+minimize 0.0 1e-8 10000 100000
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 5.80679
+  ghost atom cutoff = 5.80679
+  binsize = 2.903395, bins = 11 11 8
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/bin/atomonly/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 4.744 | 4.744 | 4.744 Mbytes
+   Step        Atoms        PotEng           Lx             Ly             Lz           Press           Fmax          Fnorm     
+         0        1728  -6117.497240523381 30.67429216787243 30.67429216787243 21.69 -86.02576054963788 4.27305760219987e-14 8.054570631517385e-13
+         1        1728  -6117.497240523381 30.67429216787243 30.67429216787243 21.69 -86.02576054961423 2.672168042394674e-14 4.733060002191651e-13
+Loop time of 0.00508199 on 1 procs for 1 steps with 1728 atoms
+
+99.8% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+Minimization stats:
+  Stopping criterion = force tolerance
+  Energy initial, next-to-last, final = 
+     -6117.49724052338  -6117.49724052338  -6117.49724052338
+  Force two-norm initial, final = 8.0545706e-13 4.73306e-13
+  Force max component initial, final = 4.2730576e-14 2.672168e-14
+  Final line search alpha, max atom move = 1 2.672168e-14
+  Iterations, force evaluations = 1 2
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.0049246  | 0.0049246  | 0.0049246  |   0.0 | 96.90
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 3.5608e-05 | 3.5608e-05 | 3.5608e-05 |   0.0 |  0.70
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.0001217  |            |       |  2.40
+
+Nlocal:           1728 ave        1728 max        1728 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           3433 ave        3433 max        3433 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:          67392 ave       67392 max       67392 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 67392
+Ave neighs/atom = 39
+Neighbor list builds = 0
+Dangerous builds = 0
+variable EB equal $(pe:%.16g)
+variable EB equal -6117.497240523381
+print "RESULT bulk N=$(count(all):%.0f) E=$(pe:%.16g) Lx=$(lx:%.16g) Ly=$(ly:%.16g) Lz=$(lz:%.16g) Fmax=$(fmax:%.16g) Pressure=$(press:%.16g)"
+RESULT bulk N=1728 E=-6117.497240523381 Lx=30.67429216787243 Ly=30.67429216787243 Lz=21.69 Fmax=2.672168042394674e-14 Pressure=-86.02576054961423
+dump final all custom 1 bulk.dump id type x y z c_pea
+dump_modify final sort id format float %.16g
+run 0
+WARNING: No fixes with time integration, atoms won't move (src/src/verlet.cpp:60)
+Per MPI rank memory allocation (min/avg/max) = 3.619 | 3.619 | 3.619 Mbytes
+   Step        Atoms        PotEng           Lx             Ly             Lz           Press           Fmax          Fnorm     
+         1        1728  -6117.497240523381 30.67429216787243 30.67429216787243 21.69 -86.02576054959063 2.67841304690819e-14 4.750505962382516e-13
+Loop time of 8.26e-07 on 1 procs for 0 steps with 1728 atoms
+
+0.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 8.26e-07   |            |       |100.00
+
+Nlocal:           1728 ave        1728 max        1728 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           3433 ave        3433 max        3433 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:          67392 ave       67392 max       67392 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 67392
+Ave neighs/atom = 39
+Neighbor list builds = 0
+Dangerous builds = 0
+undump final
+write_data bulk.data
+System init for write_data ...
+change_box all x delta -40 0 units box
+Changing box ...
+  orthogonal box = (-40 0 0) to (30.674292 30.674292 21.69)
+run 0
+WARNING: No fixes with time integration, atoms won't move (src/src/verlet.cpp:60)
+Per MPI rank memory allocation (min/avg/max) = 3.755 | 3.755 | 3.755 Mbytes
+   Step        Atoms        PotEng           Lx             Ly             Lz           Press           Fmax          Fnorm     
+         1        1728  -5993.691244944951 70.67429216787244 30.67429216787243 21.69 -4694.368243743918 0.2705223207393044 3.76932552900914
+Loop time of 6.95e-07 on 1 procs for 0 steps with 1728 atoms
+
+143.9% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 6.95e-07   |            |       |100.00
+
+Nlocal:           1728 ave        1728 max        1728 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           2654 ave        2654 max        2654 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:          62352 ave       62352 max       62352 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 62352
+Ave neighs/atom = 36.083333
+Neighbor list builds = 0
+Dangerous builds = 0
+print "RESULT unrelaxed N=$(count(all):%.0f) E=$(pe:%.16g) Lx=$(lx:%.16g) Ly=$(ly:%.16g) Lz=$(lz:%.16g) Fmax=$(fmax:%.16g)"
+RESULT unrelaxed N=1728 E=-5993.691244944951 Lx=70.67429216787244 Ly=30.67429216787243 Lz=21.69 Fmax=0.2705223207393044
+minimize 0.0 1e-8 10000 100000
+Per MPI rank memory allocation (min/avg/max) = 4.88 | 4.88 | 4.88 Mbytes
+   Step        Atoms        PotEng           Lx             Ly             Lz           Press           Fmax          Fnorm     
+         1        1728  -5993.691244944951 70.67429216787244 30.67429216787243 21.69 -4694.368243743918 0.2705223207393044 3.76932552900914
+        20        1728  -5994.955643723266 70.67429216787244 30.67429216787243 21.69 -2381.564331869453 2.799240426786843e-05 0.000558923568945748
+        40        1728  -5994.955643815109 70.67429216787244 30.67429216787243 21.69 -2382.595440371387 2.101577384339137e-09 3.058482905524622e-08
+        42        1728  -5994.955643815038 70.67429216787244 30.67429216787243 21.69 -2382.595442010997 3.40516046349465e-10 6.863356101683275e-09
+Loop time of 0.136312 on 1 procs for 41 steps with 1728 atoms
+
+98.6% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+Minimization stats:
+  Stopping criterion = force tolerance
+  Energy initial, next-to-last, final = 
+     -5993.69124494495    -5994.955643816  -5994.95564381504
+  Force two-norm initial, final = 3.7693255 6.8633561e-09
+  Force max component initial, final = 0.27052232 3.4051605e-10
+  Final line search alpha, max atom move = 1 3.4051605e-10
+  Iterations, force evaluations = 41 82
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.13293    | 0.13293    | 0.13293    |   0.0 | 97.52
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.00069966 | 0.00069966 | 0.00069966 |   0.0 |  0.51
+Output  | 9.2303e-05 | 9.2303e-05 | 9.2303e-05 |   0.0 |  0.07
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.00259    |            |       |  1.90
+
+Nlocal:           1728 ave        1728 max        1728 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           2654 ave        2654 max        2654 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:          62352 ave       62352 max       62352 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 62352
+Ave neighs/atom = 36.083333
+Neighbor list builds = 0
+Dangerous builds = 0
+print "RESULT slab N=$(count(all):%.0f) E=$(pe:%.16g) Lx=$(lx:%.16g) Ly=$(ly:%.16g) Lz=$(lz:%.16g) Fmax=$(fmax:%.16g)"
+RESULT slab N=1728 E=-5994.955643815038 Lx=70.67429216787244 Ly=30.67429216787243 Lz=21.69 Fmax=3.40516046349465e-10
+dump final all custom 1 slab.dump id type x y z c_pea
+dump_modify final sort id format float %.16g
+run 0
+WARNING: No fixes with time integration, atoms won't move (src/src/verlet.cpp:60)
+Per MPI rank memory allocation (min/avg/max) = 3.755 | 3.755 | 3.755 Mbytes
+   Step        Atoms        PotEng           Lx             Ly             Lz           Press           Fmax          Fnorm     
+        42        1728  -5994.955643815027 70.67429216787244 30.67429216787243 21.69 -2382.595442010999 3.405162818381768e-10 6.863357874833394e-09
+Loop time of 8.52e-07 on 1 procs for 0 steps with 1728 atoms
+
+117.4% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 8.52e-07   |            |       |100.00
+
+Nlocal:           1728 ave        1728 max        1728 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           2654 ave        2654 max        2654 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:          62352 ave       62352 max       62352 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 62352
+Ave neighs/atom = 36.083333
+Neighbor list builds = 0
+Dangerous builds = 0
+undump final
+write_data slab.data
+System init for write_data ...
+Total wall time: 0:00:00

@@ -1,0 +1,27 @@
+{
+  "ovito_version": "3.17.1",
+  "renderer": "TachyonRenderer",
+  "size": [
+    1600,
+    1000
+  ],
+  "input_format": "lammps/dump",
+  "images": [
+    {
+      "name": "Cu100_bulk_cna",
+      "source": "results/cluster/inputs/100_n12_v40/bulk.dump",
+      "atoms": 1728,
+      "CNA_counts": {
+        "CommonNeighborAnalysis.counts.OTHER": 0,
+        "CommonNeighborAnalysis.counts.FCC": 1728,
+        "CommonNeighborAnalysis.counts.HCP": 0,
+        "CommonNeighborAnalysis.counts.BCC": 0,
+        "CommonNeighborAnalysis.counts.ICO": 0
+      },
+      "energy_min_eV": -3.540218310487185,
+      "energy_max_eV": -3.54021831048718,
+      "image": "figures/ovito/Cu100_bulk_cna.png",
+      "state": "ovito/states/Cu100_bulk_cna.ovito"
+    }
+  ]
+}
