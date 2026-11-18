@@ -1,0 +1,38 @@
+# Copper (001) film. Arguments: morphology, seed, equil_steps.
+units metal
+atom_style atomic
+boundary p p f
+
+variable a equal 3.615
+variable side equal 20*v_a/sqrt(2.0)
+variable depth equal 18*v_a
+variable slab_top equal v_depth-0.01
+variable cut_left equal 0.25*v_side
+variable cut_right equal 0.75*v_side
+variable cut_base equal 17*v_a-0.10
+variable box_top equal v_depth+25
+lattice fcc ${a} orient x 1 1 0 orient y -1 1 0 orient z 0 0 1
+region domain block 0 ${side} 0 ${side} -25 ${box_top} units box
+create_box 1 domain
+region copper block INF INF INF INF -0.01 ${slab_top} units box
+create_atoms 1 region copper
+region terrace block ${cut_left} ${cut_right} INF INF ${cut_base} INF units box
+if "${morphology} == stepped" then "delete_atoms region terrace"
+mass 1 63.546
+pair_style eam/alloy
+pair_coeff * * ../../CuYM.eam.alloy Cu
+timestep 0.001
+thermo 100
+thermo_modify lost error flush yes
+thermo_style custom step atoms temp pe etotal lx ly lz pxx pyy pzz
+write_dump all custom initial.dump id type x y z modify sort id
+min_style fire
+minimize 1e-10 1e-6 3000 12000
+write_dump all custom minimized.dump id type x y z modify sort id
+reset_timestep 0
+velocity all create 300 ${seed} mom yes rot no dist gaussian
+fix bath all nvt temp 300 300 0.1
+run ${equil_steps}
+unfix bath
+write_dump all custom equilibrated.dump id type x y z modify sort id
+write_restart equilibrated.restart

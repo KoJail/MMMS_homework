@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    
+    <meta name="description" content="# MD simulation of dislocation properties * **Goals**      * Energy, core structure and stress field">
+    
+    
+    
+    <meta property="og:title" content="MD simulation of dislocation properties - 水源文档">
+    
+    
+    
+    <meta property="og:type" content="website">
+    
+    <meta property="og:image" content="https://notes.sjtu.edu.cn/icons/android-chrome-512x512.png">
+    <meta property="og:image:alt" content="HedgeDoc logo">
+    <meta property="og:image:type" content="image/png">
+    
+    <base href="https://notes.sjtu.edu.cn/">
+    <title>MD simulation of dislocation properties - 水源文档</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="https://notes.sjtu.edu.cn/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://notes.sjtu.edu.cn/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://notes.sjtu.edu.cn/icons/favicon-16x16.png">
+<link rel="manifest" href="https://notes.sjtu.edu.cn/icons/site.webmanifest">
+<link rel="mask-icon" href="https://notes.sjtu.edu.cn/icons/safari-pinned-tab.svg" color="#b51f08">
+<link rel="shortcut icon" href="https://notes.sjtu.edu.cn/icons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="水源文档 - Ideas grow better together">
+<meta name="application-name" content="水源文档 - Ideas grow better together">
+<meta name="msapplication-TileColor" content="#b51f08">
+<meta name="msapplication-config" content="https://notes.sjtu.edu.cn/icons/browserconfig.xml">
+<meta name="theme-color" content="#b51f08">
+
+    <link rel="stylesheet" href='https://notes.sjtu.edu.cn/build/emojify.js/dist/css/basic/emojify.min.css'>
+    <link href="build/font-pack.4362583c9249021b5028.css" rel="stylesheet"><link href="build/2.15c517ea2148f55c8206.css" rel="stylesheet"><link href="build/3.ec6e7d6280fcd73e729d.css" rel="stylesheet"><link href="build/pretty-styles-pack.2fb0d01138de2df6de0a.css" rel="stylesheet"><link href="build/pretty-styles.e8292b7c6e0503519fb4.css" rel="stylesheet"><link href="build/1.1666d9d869a0532d9bce.css" rel="stylesheet"><link href="build/pretty.7052ee59724088d865fc.css" rel="stylesheet">
+</head>
+
+<body style="display:none;">
+    <div class="ui-infobar container-fluid unselectable hidden-print">
+        <small>
+            <span>
+                
+                    <span class="ui-lastchangeuser">&thinsp;<i class="ui-user-icon small" style="background-image: url(https://cdn.libravatar.org/avatar/ec4303f41175b699796e50c9fa53874c?default=identicon&s=400);" data-toggle="tooltip" data-placement="right" title="LiuGuisen"></i></span>
+                
+                &nbsp;<span class="text-uppercase ui-status-lastchange"></span>
+                <span class="ui-lastchange text-uppercase" data-createtime="Tue Apr 05 2022 07:02:48 GMT+0000 (Coordinated Universal Time)" data-updatetime="Mon Nov 10 2025 08:45:09 GMT+0000 (Coordinated Universal Time)"></span>
+            </span>
+            <span class="pull-right">750 views <a href="#" class="ui-edit" title="Edit this note"><i class="fa fa-fw fa-pencil"></i></a></span>
+            <br>
+            
+        </small>
+    </div>
+    <div id="doc" class="container markdown-body" ># MD simulation of dislocation properties
+* **Goals** 
+    * Energy, core structure and stress field of dislocations in fcc-Al and bcc-W
+    * Dislocation motion under external loading
+
+# 0. Log into Siyuan cluster
+https://notes.sjtu.edu.cn/s/IL0qIhw6F
+
+# 1. Prepare all the input files, including 3 folders
+``` 
+git clone https://gitee.com/sjtu-liugs/mmmsfall.git
+cd mmmsfall
+ll
+``` 
+![](https://notes.sjtu.edu.cn/uploads/upload_5ad05aebb778d71e8f32ae7aa3c07e1b.png)
+
+
+
+# 2. Use LAMMPS to calculate properties for the screw dislocation in Al 
+## 2.1 Energy calculation (in.screw) 
+
+```
+cd 3screwAl/
+ll
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_c1d32c01e6c13e39bf43c6d7c18a19fa.png)
+
+
+
+### (1) Check &#34;**in.screw**&#34; to understand how to calculate the energy of the screw dislocation
+```
+less in.screw
+q
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_b9b44b18700f939859df62cea63759a8.png)
+![](https://notes.sjtu.edu.cn/uploads/upload_60c8302e71686121e250c6d36d8180f9.png)
+
+### (2) Run &#34;**in.screw**&#34; to calculate the screw dislocation energy
+```
+sbatch run1.slurm
+ll
+less log.lammps
+q
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_a6226e1a69e3d6062c7fae1b755ea922.png)
+
+### (3) visualize the relaxed core structure and stress field by ovito
+* You can visualzie the dump file by installing OVITO on your own laptop, and download dump files to your laptop, which is **strongly recommended**. 
+* or by HPC Studio visualization platform on online browser [](https://)https://studio.hpc.sjtu.edu.cn/, which is **NOT recommended**. Details can be found in [](https://)https://notes.sjtu.edu.cn/s/1A_DCVJFV
+
+* Load dump file, by clicking &#34;load File&#34;, and choosing &#34;**dump.Al_screw**&#34; file in the folder &#34;mmmsfall/3screwAl&#34;
+    ![](https://notes.sjtu.edu.cn/uploads/upload_d60d5820576e5518774c41af0326953a.png)
+    ![](https://notes.sjtu.edu.cn/uploads/upload_af8def98d8ce1cae053f7e50fe0e024b.png)
+
+
+* **Add modification --&gt; Common neighbor analysis**
+    ![](https://notes.sjtu.edu.cn/uploads/upload_5edd5680ced9f1e1119480eb12b7713a.png)
+
+* **Add modification --&gt; color coding --&gt; Input property (c_pea)**
+    ![](https://notes.sjtu.edu.cn/uploads/upload_357988e6288597fcbbe3338aa7dd1b69.png)
+
+
+* **Add modification --&gt; color coding --&gt; Input property (v_sxy)**
+    ![](https://notes.sjtu.edu.cn/uploads/upload_23cda5f4e34089a8378ce9b2d0c80f98.png)
+* **Add modification --&gt; color coding --&gt; Input property (v_sxz)**
+    ![](https://notes.sjtu.edu.cn/uploads/upload_1ad9bb69371885d0bc5299f395814f15.png)
+
+ 
+### (4) Calculate dislocation line energy per unit length
+```
+less screwAl.data
+```
+    
+![](https://notes.sjtu.edu.cn/uploads/upload_218d616320d0ccba9a851c3bfdc9f177.png)
+
+* **dE = (E[1]-E[ref])/DislocationLength, with DislocationLength = Lx =(xhi - xlo)**
+
+
+## 2.2 screw motion under shear loading 
+### (1) Understand how to simulate dislocation motion under shear loading
+```
+less in.sszx
+q
+```
+
+### (2) Run input file to calculate stress-strain curve and atomic configuration with increasing applied strain
+
+```
+sbatch run2.slurm
+ll
+less screwSS.dat
+q
+```
+
+### (3) Use Ovito to visualize atomic configuration with increasing loading
+
+* **load &#34;ms0.xyz&#34;**
+
+* **Add modification --&gt; Common neighbor analysis**
+    ![](https://notes.sjtu.edu.cn/uploads/upload_f50b113dedffc40268c24cc32593be32.png)
+
+### (4) See stress-strain response on your laptop or use &#34;desktop&#34; on hpc studio similar to ovito, 
+* **gnuplot command is NOT allowed on login node!!!**
+
+```
+srun -p cpu -n 1 --pty gnuplot
+plot &#39;screwSS.dat&#39; u 2:3 w lp pt 7 ps 1.5
+```
+ 
+![](https://notes.sjtu.edu.cn/uploads/upload_344095c43385ede4d835921e999e5c21.png)
+
+
+
+# 3. Use LAMMPS to calculate properties for the edge dislocation in Al (repeat the above simulation in step 2)
+## 3.1 Energy calculation (in.edge) 
+
+```
+cd ../2edgeAl/
+ll
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_5721fcaab0eec46d22ea308312017511.png)
+
+
+
+
+### (1) check &#34;**in.edge**&#34; to understand how to calculate the energy of the edge dislocation
+```
+less in.edge 
+q
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_e6790979cba782d2b45da2048db673a5.png)
+
+### (2) Run &#34;**in.edge**&#34; to calculate the edge dislocation energy
+```
+sbatch run1.slurm
+ll
+less log.lammps
+q
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_74403e4d59bdce95c7aab248162b58dc.png)
+
+
+### (3) visualize the relaxed core structure and stress field 
+* **Load &#34;**dump.edge**&#34; file**
+* **Add modification --&gt; Common neighbor analysis**
+    ![](https://notes.sjtu.edu.cn/uploads/upload_a30c230e0ed609f74b12e07af643323a.png)
+
+* **Add modification --&gt; color coding --&gt; Input property (c_pea)**
+    ![](https://notes.sjtu.edu.cn/uploads/upload_542cbb4e3a11d45e5df29abcb20d2289.png)
+
+
+* **Add modification --&gt; color coding --&gt; Input property (v_sxx)**
+    ![](https://notes.sjtu.edu.cn/uploads/upload_1db4d90ef6541cc8dadcaae70c0854ce.png)
+* **Add modification --&gt; color coding --&gt; Input property (v_sxz)**
+    ![](https://notes.sjtu.edu.cn/uploads/upload_4d4bb10743fc45b4cb3f741bf7f066df.png)
+
+ 
+### (4) Calculate dislocation line energy per unit length
+```
+less edgeAl.data
+```
+    
+![](https://notes.sjtu.edu.cn/uploads/upload_2c17318e0c1cdd16d5bf346357d4fe33.png)
+
+* **dE = (E[1]-(E[r0]+E[r1])/2)/DislocationLength, with DislocationLength = Ly =(yhi - ylo)**
+
+
+* **Q2: Compare result with any reference?**
+
+## 3.2 edge motion under shear loading 
+### (1) Understand how to simulate dislocation motion under shear loading
+```
+less in.syx
+q
+```
+
+### (2) Run input file to calculate stress-strain curve and atomic configuration with increasing applied strain
+
+```
+sbatch run2.slurm
+ll
+```
+
+### (3) Use Ovito to visualize atomic configuration with increasing loading
+
+* **load &#34;syx1.xyz&#34;**
+
+* **Add modification --&gt; Common neighbor analysis**
+![](https://notes.sjtu.edu.cn/uploads/upload_0e488914d5c0a2723bf679e3aec67f75.png)
+
+### (4) See stress-strain response on your laptop or use desktop on cluster, similar to apply to use ovito
+
+```
+less syx.dat
+q
+srun -p cpu --reservation=mse6701_class -n 1 --pty gnuplot
+plot &#39;syx.dat&#39; u 2:3 w lp pt 7 ps 1.5
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_927a81b2f2337388d4c0a6139d0dffa2.png)
+
+
+# 4. Discussion
+&gt;* **Q1: Compare the dislocation energy with any reference?**
+&gt;* **Q2: Compare simulated stress components with theoretical stress field of both edge and screw.** 
+&gt;* **Q3: For the stress field of edge and dislocations, under what condition the elasticity theory is valid compared to MD results? When the elasticity theory fails? The answer should lead to the proper value of core radius of dislocations.**
+&gt;* **Q4: Compare features of stress components between screw and edge dislocations, to get better understanding of dislocation cores, i.e., the essentially different nature between edge and screw**
+&gt;* **Q5: What&#39;s the shear modulus of Al?**
+&gt;* **Q6: Dislocation moves at a critical stress around 30 MPa for the screw dislocation in Al. Any other factors may influence this critical stress?**
+&gt;* **Q7: Can we extract dislocation velocity combing stress-strain curve and atomic configuration? How?**
+&gt;* **Q8: Compare core structure between screw and edge dislocation, e.g. the stacking fault width between two Shockley partials.**
+&gt;* **Q9: Compare edge dislocation line energy with screw? Which one is smaller? The one withe smaller one is more commonly observed?**
+&gt;* **Q10: The critical stress for edge to move is much smaller than screw, any possible reasons?** 
+&gt;* **Q11: Considering the core features for screw and edge, which one is more likely to cross slip?** 
+&gt; ... 
+
+# 5. An edge dislocation in bcc-W at zero Temperature 
+```
+cd ../4edgeW/
+ll
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_9f27c451f5354c84c256cff0f7d685fc.png)
+
+============================================================
+* Periodic boundary condition along both dislocation line, and dislocation motion
+* in. rlx: relax the initial model (del.data) to obtain the relaxed edge model at T = 0K
+* in. syx: apply shear to the relaxed edge (dis.data) model by velocity on the upper layer, timestep is 1 ps
+* in.syxb: same as in.syx, excpet displacement increment is four times that of in.syx
+
+============================================================
+
+## 5.1 Obtain the relaxed core structure (by in.rlx)
+```
+less in.rlx
+q
+sbacth run1.slurm
+```
+* visulaize the relaxed core structure, ovito load &#34;rlx*.xyz&#34; 
+
+## 5.2 Calcutate the dislocation motion under shear loading (by in.syxb)
+
+```
+diff in.syxb in.syx
+less in.syxb
+q
+sbatch run2.slurm
+```
+
+check whether the job has been completed
+```
+squeue
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_5b8e8b62e37575d479e58e2164b74264.png)
+
+* visualize dislocation configuration by OVITO loading &#34;syx*.xyz&#34;
+
+* Plot the stress-strain curve using data in &#34;syxb.dat&#34;
+```
+less syxb.dat
+q
+srun -p cpu -n 1 --pty gnuplot
+plot &#39;syxb.dat&#39; u 2:3 w lp pt 7 ps 2
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_e5f296b9cf2bb6942bb91037a32b107e.png)
+## 5.3 Discussion
+&gt;* **Compare dislocation core structure in fcc with that in bcc**
+&gt;* **Compare stress response with the screw dislocation in Al**
+&gt;* **Think about dislocation velocity vs plastic strain rate, and the strain rate effects**
+
+![](https://notes.sjtu.edu.cn/uploads/upload_3666ec02b91d5b36ade3278d9527a632.png)
+
+# 6. Supplementary materials
+## 6.1 Check input files in other folders
+### (1) Compute lattice parameter and Bulk modulus
+* Submit lammps job and fit data
+```
+cd 5latticeBulkModulus/Cu/
+cp ../../0Surface/run1.slurm .
+vi run1.slurm
+sbatch run1.slurm
+srun -p cpu -n 1 --pty gnuplot plot.bm.gnu
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_b687c2d0ecff475a2a56a9da9e6c2026.png)
+
+* download **data** file to local computer
+
+&gt; $ gnuplot plot.bm.gnu
+![](https://notes.sjtu.edu.cn/uploads/upload_2e0006b2c8924d2edd3273616e6acc58.png)
+
+![](https://notes.sjtu.edu.cn/uploads/upload_031fa98c1088c46b1745c0c05387948d.png)
+
+### (2) Compute anisotropic elastic constants
+```
+cd ../../6cij/
+cp ../0Surface/run1.slurm .
+vi run1.slurm
+sbatch run1.slurm 
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_5469644a2e26a8476cbe6588ac7534d5.png)
+
+```
+vi jobID.out 
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_a3c75a5bc67cb0eb70eef35209f798d5.png)
+
+### (3) Compute formation energy of vacancy
+
+### (4) Compute formation energy of interstitial at T = 0K
+
+### (5) Compute formation energy of interstitial when relaxed at finite temperature
+
+
+## 6.2 Create a model with dislocation introduced by software &#34;ATOMSK&#34;
+* **Be careful when using ATOMSK** 
+[](https://)https://atomsk.univ-lille.fr/tutorial_Al_screw.php
+```
+atomsk --create fcc 4.032 Al orient [1-12] [-111] [110] -duplicate 96 20 8 Al1.xsf
+atomsk Al1.xsf -dislocation 0.51*box 0.501*box screw Z Y 2.85105454 screw.xsf
+```
+* Tilt the box to restore the periodicity along x-axis, and convert the data format to lammps read data
+```
+vi screw.xsf
+atomsk screw.xsf lammps
+```
+* To introduce an edge dislocation
+[](https://)https://atomsk.univ-lille.fr/tutorial_Al_edge.php
+```
+atomsk --create fcc 4.032 Al orient [110] [-111] [1-12] Al_unitcell.xsf
+atomsk Al_unitcell.xsf -duplicate 61 15 1 -deform X -0.008196721 0.0 top.xsf
+atomsk Al_unitcell.xsf -duplicate 60 15 1 -deform X 0.00833333 0.0 bottom.xsf
+atomsk --merge Y 2 bottom.xsf top.xsf edge60.cfg
+```
+
+
+
+</div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="display:none;"></div>
+    
+</body>
+
+</html>
+<script src="https://notes.sjtu.edu.cn/js/mathjax-config-extra.js"></script>
+<script src="https://notes.sjtu.edu.cn/build/MathJax/MathJax.js" defer></script>
+<script src="https://notes.sjtu.edu.cn/build/MathJax/config/TeX-AMS-MML_HTMLorMML.js" defer></script>
+<script src="https://notes.sjtu.edu.cn/build/MathJax/config/Safe.js" defer></script>
+<script src="config"></script><script src="build/constrain-object.min.js"></script><script src="build/vendors~common.30a04187fde896286a26.js" defer="defer"></script><script src="build/common.7ab3cf9d36ac5e2068a7.js" defer="defer"></script><script src="build/vendors~cover~cover-pack~index~index-pack~pretty~pretty-pack~slide~slide-pack.60cacd32e8b0c9fcf835.js" defer="defer"></script><script src="build/vendors~index~index-pack~pretty~pretty-pack~slide~slide-pack.ebcbca5b90849f555b14.js" defer="defer"></script><script src="build/pretty-pack.f207bf53cdfc24f58add.js" defer="defer"></script>
+
+

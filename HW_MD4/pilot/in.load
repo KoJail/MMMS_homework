@@ -1,0 +1,23 @@
+# Restart from the relaxed sample. Arguments: rate_ps, load_steps, dump_every.
+units metal
+read_restart equilibrated.restart
+pair_style eam/alloy
+pair_coeff * * ../../CuYM.eam.alloy Cu
+timestep 0.001
+reset_timestep 0
+variable ref_x equal $(lx)
+variable area equal $(ly)*18*3.615
+variable strain equal lx/v_ref_x-1.0
+# pxx is positive in compression (bar). Remove vacuum normalization.
+variable axial equal -pxx*vol/(lx*v_area)*1.0e-4
+variable lateral equal -pyy*vol/(ly*v_ref_x*18*3.615)*1.0e-4
+thermo 20
+thermo_style custom step time v_strain v_axial v_lateral temp pe etotal lx ly lz pxx pyy pzz
+thermo_modify lost error flush yes
+fix loading all deform 1 x erate ${rate_ps} remap x units box
+fix production all nvt temp 300 300 0.1
+dump frames all custom ${dump_every} loading.dump id type x y z
+dump_modify frames sort id first yes
+restart 5000 load.restart.*
+run ${load_steps}
+write_restart final.restart

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    
+    <meta name="description" content="# Exercise 2: Melting &amp; Diffusion simulation by LAMMPS # 0. Login siyuan cluster https://notes.sjtu.">
+    
+    
+    
+    <meta property="og:title" content="Exercise 2: Melting &amp; Diffusion simulation by LAMMPS - 水源文档">
+    
+    
+    
+    <meta property="og:type" content="website">
+    
+    <meta property="og:image" content="https://notes.sjtu.edu.cn/icons/android-chrome-512x512.png">
+    <meta property="og:image:alt" content="HedgeDoc logo">
+    <meta property="og:image:type" content="image/png">
+    
+    <base href="https://notes.sjtu.edu.cn/">
+    <title>Exercise 2: Melting &amp; Diffusion simulation by LAMMPS - 水源文档</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="https://notes.sjtu.edu.cn/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://notes.sjtu.edu.cn/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://notes.sjtu.edu.cn/icons/favicon-16x16.png">
+<link rel="manifest" href="https://notes.sjtu.edu.cn/icons/site.webmanifest">
+<link rel="mask-icon" href="https://notes.sjtu.edu.cn/icons/safari-pinned-tab.svg" color="#b51f08">
+<link rel="shortcut icon" href="https://notes.sjtu.edu.cn/icons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="水源文档 - Ideas grow better together">
+<meta name="application-name" content="水源文档 - Ideas grow better together">
+<meta name="msapplication-TileColor" content="#b51f08">
+<meta name="msapplication-config" content="https://notes.sjtu.edu.cn/icons/browserconfig.xml">
+<meta name="theme-color" content="#b51f08">
+
+    <link rel="stylesheet" href='https://notes.sjtu.edu.cn/build/emojify.js/dist/css/basic/emojify.min.css'>
+    <link href="build/font-pack.4362583c9249021b5028.css" rel="stylesheet"><link href="build/2.15c517ea2148f55c8206.css" rel="stylesheet"><link href="build/3.ec6e7d6280fcd73e729d.css" rel="stylesheet"><link href="build/pretty-styles-pack.2fb0d01138de2df6de0a.css" rel="stylesheet"><link href="build/pretty-styles.e8292b7c6e0503519fb4.css" rel="stylesheet"><link href="build/1.1666d9d869a0532d9bce.css" rel="stylesheet"><link href="build/pretty.7052ee59724088d865fc.css" rel="stylesheet">
+</head>
+
+<body style="display:none;">
+    <div class="ui-infobar container-fluid unselectable hidden-print">
+        <small>
+            <span>
+                
+                    <span class="ui-lastchangeuser">&thinsp;<i class="ui-user-icon small" style="background-image: url(https://cdn.libravatar.org/avatar/ec4303f41175b699796e50c9fa53874c?default=identicon&s=400);" data-toggle="tooltip" data-placement="right" title="LiuGuisen"></i></span>
+                
+                &nbsp;<span class="text-uppercase ui-status-lastchange"></span>
+                <span class="ui-lastchange text-uppercase" data-createtime="Mon Nov 13 2023 07:48:39 GMT+0000 (Coordinated Universal Time)" data-updatetime="Mon Nov 03 2025 08:25:18 GMT+0000 (Coordinated Universal Time)"></span>
+            </span>
+            <span class="pull-right">335 views <a href="#" class="ui-edit" title="Edit this note"><i class="fa fa-fw fa-pencil"></i></a></span>
+            <br>
+            
+        </small>
+    </div>
+    <div id="doc" class="container markdown-body" ># Exercise 2: Melting &amp; Diffusion simulation by LAMMPS
+# 0. Login siyuan cluster
+https://notes.sjtu.edu.cn/s/IL0qIhw6F
+# 1. Prepare input files
+## (1) If you have already finished the first exercise
+```
+cd mmms/mmmsfall/1Melting/
+ll
+less in.Al
+q
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_b1173ce13af6be22ce91c5044715e42c.png)
+
+## (2) If you have not cloned all the files from gitee
+```
+mkdir mmms
+cd mmms
+git clone https://gitee.com/sjtu-liugs/mmmsfall.git
+cd mmmsfall
+ll
+cd 1Melting/
+ll
+less in.Al
+q
+```
+
+# 2. Use LAMMPS to simulate the melting process and OVITO to visualize the structure evolution
+## 2.1 Run lammps input file
+```
+sbatch run.slurm
+squeue
+```
+## 2.2 Visualize the atomic configuration at different temperatures by OVITO
+* Download the files to local computer and visualize it with Ovito
+    * vt0.xyz
+    * vt****.xyz
+    * vt400000.xyz
+### 2.2.1 CSP analysis
+![](https://notes.sjtu.edu.cn/uploads/upload_91b751ba183c6c8b6c097476457f3b69.png)
+
+![](https://notes.sjtu.edu.cn/uploads/upload_fc59a831b75633bbd10fcbd924210654.png)
+
+
+### 2.2.2 CNA analysis
+![](https://notes.sjtu.edu.cn/uploads/upload_67219eaa048744aaa91ec359e174f31f.png)
+
+![](https://notes.sjtu.edu.cn/uploads/upload_46ed697c0628f83f97931b49e6e29cc3.png)
+
+
+# 3. Understand the volume-Temperature relationship during melting process
+
+## Plot volume-temperature relation during melting with created &#34;VT2.dat&#34; by either (a) or (b)
+
+### (a) plot the V-T relation on laptop by downloading the created &#34;VT2.dat&#34; to local computer
+### (b) plot the V-T relatioon using desktop of siyuan cluster with gnuplot
+
+```
+gnuplot
+gnuplot&gt;plot &#39;VT2.dat&#39; u 2:3 w lp pt 7 ps 1.5
+```
+![](https://notes.sjtu.edu.cn/uploads/upload_c00a2bf4cff2b470a2317e91d76983d9.png)
+
+
+# 4. Compute the diffusion coefficient
+```
+cd mmmsfall/6Diffusion/
+sbatch run1.slurm
+less tMSD.dat
+```
+
+
+## Appendix: Use ovito on Siyuan cluster to visualize structure
+* https://studio.hpc.sjtu.edu.cn
+![](https://notes.sjtu.edu.cn/uploads/upload_41844fa464b4086de9ddd3fa3641cefd.png)
+![](https://notes.sjtu.edu.cn/uploads/upload_59b28a4735f27e6d8e1299ad6fdf742b.png)
+![](https://notes.sjtu.edu.cn/uploads/upload_ea2801d442693669b72e73ba6a625886.png)
+![](https://notes.sjtu.edu.cn/uploads/upload_728850501833a8ded10578f0bfc3e5a2.png)
+
+![](https://notes.sjtu.edu.cn/uploads/upload_a071bec88feccd760499c5bde0fb6dd3.png)
+
+
+
+</div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="display:none;"></div>
+    
+</body>
+
+</html>
+<script src="https://notes.sjtu.edu.cn/js/mathjax-config-extra.js"></script>
+<script src="https://notes.sjtu.edu.cn/build/MathJax/MathJax.js" defer></script>
+<script src="https://notes.sjtu.edu.cn/build/MathJax/config/TeX-AMS-MML_HTMLorMML.js" defer></script>
+<script src="https://notes.sjtu.edu.cn/build/MathJax/config/Safe.js" defer></script>
+<script src="config"></script><script src="build/constrain-object.min.js"></script><script src="build/vendors~common.30a04187fde896286a26.js" defer="defer"></script><script src="build/common.7ab3cf9d36ac5e2068a7.js" defer="defer"></script><script src="build/vendors~cover~cover-pack~index~index-pack~pretty~pretty-pack~slide~slide-pack.60cacd32e8b0c9fcf835.js" defer="defer"></script><script src="build/vendors~index~index-pack~pretty~pretty-pack~slide~slide-pack.ebcbca5b90849f555b14.js" defer="defer"></script><script src="build/pretty-pack.f207bf53cdfc24f58add.js" defer="defer"></script>
+
+

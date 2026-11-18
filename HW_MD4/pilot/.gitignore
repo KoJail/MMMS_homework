@@ -1,0 +1,5 @@
+/data/
+/audit/
+/figures/
+__pycache__/
+/.continue.lock

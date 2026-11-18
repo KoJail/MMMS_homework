@@ -1,0 +1,18 @@
+# Start from an R2 equilibrium restart at a controlled phase of the stress oscillation.
+# Each replicate uses the same delay for both surface geometries.
+units metal
+read_restart reference.restart
+pair_style eam/alloy
+pair_coeff * * ../../CuYM.eam.alloy Cu
+timestep 0.001
+reset_timestep 0
+variable thickness equal 18*3.615
+variable hold_axial equal -pxx*lz/v_thickness*1.0e-4
+thermo 20
+thermo_style custom step time temp v_hold_axial pe lx ly lz pxx
+thermo_modify lost error flush yes
+fix hold all nvt temp 300 300 0.1
+run ${delay_steps}
+unfix hold
+write_dump all custom equilibrated.dump id type x y z modify sort id
+write_restart equilibrated.restart

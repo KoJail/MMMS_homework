@@ -1,0 +1,45 @@
+# Local Python environments and caches
+/.venv/
+/venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local credentials, editor state, and temporary files
+/.agents/
+/.aws/
+/.codex/
+.env
+.env.*
+!.env.example
+workspace.json
+workspace-mobile.json
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# LAMMPS trajectories, restarts, and generated run outputs
+/pilot/data/
+/pilot/audit/
+/pilot/figures/
+/pilot/归档图/
+/pilot/.continue.lock
+*.dump
+*.dump.gz
+*.restart
+*.restart.*
+*.partial
+log.lammps*
+slurm-*.out
+
+# Cluster paths and job bookkeeping
+/pilot/remote-path*.txt
+/pilot/*-job*.txt
+/pilot/phase/*jobs.txt
+
+# Local analysis tables excluded from the report
+/结课报告/数据/
